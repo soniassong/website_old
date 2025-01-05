@@ -10,7 +10,6 @@
 
 
 
-
 /*-----------------------------------*\
   #CUSTOM PROPERTY
 \*-----------------------------------*/
@@ -24,27 +23,27 @@
   /* gradient */
 
   --bg-gradient-onyx: linear-gradient(
-    to bottom right, 
-    hsl(240, 1%, 25%) 3%, 
+    to bottom right,
+    hsl(240, 1%, 25%) 3%,
     hsl(0, 0%, 19%) 97%
   );
   --bg-gradient-jet: linear-gradient(
-    to bottom right, 
-    hsla(240, 1%, 18%, 0.251) 0%, 
+    to bottom right,
+    hsla(240, 1%, 18%, 0.251) 0%,
     hsla(240, 2%, 11%, 0) 100%
   ), hsl(240, 2%, 13%);
   --bg-gradient-yellow-1: linear-gradient(
-    to bottom right, 
-    hsl(45, 100%, 71%) 0%, 
+    to bottom right,
+    hsl(45, 100%, 71%) 0%,
     hsla(36, 100%, 69%, 0) 50%
   );
   --bg-gradient-yellow-2: linear-gradient(
-    135deg, 
+    135deg,
     hsla(45, 100%, 71%, 0.251) 0%, 
     hsla(35, 100%, 68%, 0) 59.86%
   ), hsl(240, 2%, 13%);
   --border-gradient-onyx: linear-gradient(
-    to bottom right, 
+    to bottom right,
     hsl(0, 0%, 25%) 0%, 
     hsla(0, 0%, 25%, 0) 50%
   );
@@ -56,7 +55,7 @@
 
   /* solid */
 
-  --jet: hsl(0, 0%, 22%);
+  --jet: hsl(0, 0%, 30%);
   --onyx: hsl(240, 1%, 17%);
   --eerie-black-1: hsl(240, 2%, 13%);
   --eerie-black-2: hsl(240, 2%, 12%);
@@ -67,7 +66,9 @@
   --vegas-gold: hsl(45, 54%, 58%);
   --light-gray: hsl(0, 0%, 84%);
   --light-gray-70: hsla(0, 0%, 84%, 0.7);
+  --dark-gray: hsl(0,0%,66%);
   --bittersweet-shimmer: hsl(0, 43%, 51%);
+  --lightblue: hsl(198, 100%, 94%);
 
   /**
    * typography
@@ -120,8 +121,8 @@
 \*-----------------------------------*/
 
 *, *::before, *::after {
-  margin: 0;
-  padding: 0;
+  margin: 0px;
+  padding: 0px;
   box-sizing: border-box;
 }
 
@@ -155,19 +156,28 @@ input, textarea {
 
 html { font-family: var(--ff-poppins); }
 
-body { background: var(--smoky-black); }
-
-
+body { 
+  background: var(--lightblue); 
+}
 
 
 
 /*-----------------------------------*\
   #REUSED STYLE
 \*-----------------------------------*/
+.sidebar {
+  background: var(--white-1);
+  padding: 15px;
+  box-shadow: var(--shadow-1);
+  z-index: 1;
 
-.sidebar,
+  /* Remove border and border-radius specifically for the sidebar */
+  border: none;
+  border-radius: 0;
+}
+
 article {
-  background: var(--eerie-black-2);
+  background: var(--white-1);
   border: 1px solid var(--jet);
   border-radius: 20px;
   padding: 15px;
@@ -178,8 +188,16 @@ article {
 .separator {
   width: 100%;
   height: 1px;
-  background: var(--jet);
-  margin: 16px 0;
+  background: var(--light-gray-70);
+  margin: 30px 0;
+}
+
+.section-separator {
+  border: none; /* Remove default border */
+  height: 2px; /* Set the thickness */
+  background-color: var(--dark-gray); /* Dark gray color */
+  margin: 30px 0; /* Add spacing above and below */
+  width: 100%; /* Full width of the container */
 }
 
 .icon-box {
@@ -224,11 +242,11 @@ article.active {
 .h3,
 .h4,
 .h5 {
-  color: var(--white-2);
-  text-transform: capitalize;
+  color: var(--jet);
+  font-family: 'Roboto', sans-serif;
 }
 
-.h2 { font-size: var(--fs-1); }
+.h2 { font-size: var(--fs-1); text-transform: uppercase; }
 
 .h3 { font-size: var(--fs-2); }
 
@@ -300,13 +318,35 @@ article.active {
   #MAIN
 \*-----------------------------------*/
 
+/* Style for the Intro Section Header */
+.website-title {
+  font-family: 'Roboto', sans-serif; /* Change to your preferred font */
+  font-size: 40px; /* Adjust the size of the title */
+  font-weight: 500; /* Make it bold */
+  color: var(--dark-gray); /* Choose the color */
+  letter-spacing: 1px; /* Add spacing between letters */
+  text-transform: uppercase; /* Convert text to uppercase (optional) */
+  margin-bottom: 0%;
+  margin-left: 2%;
+  margin-top:2%;
+  line-height: 1;
+}
+
+.website-tagline {
+  font-family: 'Open Sans', sans-serif; /* Use a different font for the tagline */
+  font-size: 20px; /* Adjust the size of the tagline */
+  font-weight: 300; /* Use a lighter weight */
+  color: #666; /* Subtle gray color for the tagline */
+  margin-top: 10px; /* Add spacing between the title and tagline */
+  margin-left:2%;
+}
+
 main {
-  margin: 15px 12px;
+  margin: 0px;
+  margin-top: 0;
   margin-bottom: 75px;
   min-width: 259px;
 }
-
-
 
 
 
@@ -315,13 +355,21 @@ main {
 \*-----------------------------------*/
 
 .sidebar {
-  margin-bottom: 15px;
-  max-height: 112px;
-  overflow: hidden;
+  position: absolute; /* This positions the sidebar over the content */
+  top: 0; /* Aligns to the top of the page or first section */
+  left: 0; /* Aligns to the left side */
+  width: 100%; /* Sidebar width (adjust as needed) */
+  height: 100%; /* Sidebar height (adjust to fit content) */
+  background: transparent; /* Makes the sidebar blend with the background */
+  margin: 0; /* Remove margin */
+  z-index: 10; /* Ensures sidebar is above the main content */
   transition: var(--transition-2);
+  overflow: visible; /* Make sure content is fully visible */
 }
 
-.sidebar.active { max-height: 405px; }
+.sidebar.active {
+  max-height: 405px;
+}
 
 .sidebar-info {
   position: relative;
@@ -332,12 +380,12 @@ main {
 }
 
 .avatar-box {
-  background: var(--bg-gradient-onyx);
+  background: transparent;
   border-radius: 20px;
 }
 
 .info-content .name {
-  color: var(--white-2);
+  color: var(--eerie-black-1);
   font-size: var(--fs-3);
   font-weight: var(--fw-500);
   letter-spacing: -0.25px;
@@ -345,8 +393,8 @@ main {
 }
 
 .info-content .title {
-  color: var(--white-1);
-  background: var(--onyx);
+  color: var(--eerie-black-1);
+  background: none;
   font-size: var(--fs-8);
   font-weight: var(--fw-300);
   width: max-content;
@@ -387,8 +435,8 @@ main {
 .info_more-btn span { display: none; }
 
 .sidebar-info_more {
-  opacity: 0;
-  visibility: hidden;
+  opacity: 1;
+  visibility: visible;
   transition: var(--transition-2);
 }
 
@@ -416,14 +464,14 @@ main {
 }
 
 .contact-title {
-  color: var(--light-gray-70);
+  color: var(--jet);
   font-size: var(--fs-8);
   text-transform: uppercase;
   margin-bottom: 2px;
 }
 
 .contact-info :is(.contact-link, time, address) {
-  color: var(--white-2);
+  color: var(--dark-gray);
   font-size: var(--fs-7);
 }
 
@@ -439,72 +487,77 @@ main {
 }
 
 .social-item .social-link {
-  color: var(--light-gray-70);
+  color: var(--dark-gray);
   font-size: 18px;
 }
 
+.social-item .social-link:hover { color: var(--border-gradient-onyx); }
 
-.social-item .social-link:hover { color: var(--light-gray); }
-
-
-
-
+.shaded-box {
+  background-color: white; /* Or any other color you like */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  border: none; /* Remove borders if any */
+  border-radius: 8px; /* Optional: Rounded corners */
+  padding: 20px; /* Optional: Add padding for spacing inside the box */
+}
 
 /*-----------------------------------*\
   #NAVBAR
 \*-----------------------------------*/
 
 .navbar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: hsla(240, 1%, 17%, 0.75);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--jet);
-  border-radius: 12px 12px 0 0;
-  box-shadow: var(--shadow-2);
-  z-index: 5;
+  position: fixed; /* Keep navbar fixed */
+  top: 0px;
+  width: 90%;
+  max-width: 1200px;
+  z-index: 10;
+  background-color: var(--white-2); /* Ensure the navbar matches the main section */
+  border-radius: 0; /* No rounded corners if the navbar spans the full width */
+  margin: 0px;
 }
 
 .navbar-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: flex; /* Arrange navbar items horizontally */
+  justify-content: space-around; /* Add equal spacing between items */
   align-items: center;
-  padding: 0 10px;
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  list-style: none; /* Remove bullet points */
 }
 
-.navbar-link {
-  color: var(--light-gray);
-  font-size: var(--fs-8);
-  padding: 20px 7px;
-  transition: color var(--transition-1);
+.navbar-item .navbar-link {
+  text-decoration: none; /* Remove underline */
+  color: var(--jet); /* Change to your desired text color */
+  font-size: var(--fs-8); /* Adjust font size */
+  font-weight: var(--fw-300); /* Add weight to the font */
+  transition: color 0.3s ease; /* Smooth color change on hover */
 }
 
-.navbar-link:hover,
-.navbar-link:focus { color: var(--light-gray-70); }
-
-.navbar-link.active { color: var(--orange-yellow-crayola); }
-
-
-
+.navbar-item .navbar-link:hover {
+  color: var(--orange-yellow-crayola); /* Highlight color on hover */
+}
 
 
 /*-----------------------------------*\
   #ABOUT
 \*-----------------------------------*/
 
-.about .article-title { margin-bottom: 15px; }
+.about .article-title { 
+  margin-top: 15px;
+  margin-bottom: 15px; 
+  font-size: var(--fs-3);
+}
 
 .about-text {
-  color: var(--light-gray);
+  color: var(--dark-gray);
   font-size: var(--fs-6);
   font-weight: var(--fw-300);
   line-height: 1.6;
 }
 
-.about-text p { margin-bottom: 15px; }
+.about-text p { 
+  color: var(--dark-gray);
+  margin-bottom: 15px; }
 
 
 
@@ -514,7 +567,11 @@ main {
 
 .service { margin-bottom: 35px; }
 
-.service-title { margin-bottom: 20px; }
+.service-title { 
+  margin-top: 15px;
+  margin-bottom: 15px; 
+  font-size: var(--fs-4);
+ }
 
 .service-list {
   display: grid;
@@ -524,7 +581,7 @@ main {
 
 .service-item {
   position: relative;
-  background: var(--border-gradient-onyx);
+  background: var(--white-1);
   padding: 20px;
   border-radius: 14px;
   box-shadow: var(--shadow-2);
@@ -560,7 +617,11 @@ main {
  * #testimonials 
  */
 
-.testimonials { margin-bottom: 30px; }
+.testimonials { 
+  margin-top: 15px;
+  margin-bottom: 15px; 
+  font-size: var(--fs-4);
+  }
 
 .testimonials-title { margin-bottom: 20px; }
 
@@ -726,7 +787,11 @@ main {
  * #clients 
  */
 
-.clients { margin-bottom: 15px; }
+.clients { 
+  margin-top: 15px;
+  margin-bottom: 15px; 
+  font-size: var(--fs-4);
+  }
 
 .clients-list {
   display: flex;
@@ -757,27 +822,31 @@ main {
 .clients-item img:hover { filter: grayscale(0); }
 
 
-
-
-
 /*-----------------------------------*\
   #RESUME
 \*-----------------------------------*/
 
-.article-title { margin-bottom: 30px; }
+.article-title { 
+  margin-top: 15px;
+  margin-bottom: 15px; 
+  font-size: var(--fs-3);
+  }
 
 
 /**
  * education and experience 
  */
 
-.timeline { margin-bottom: 30px; }
+.timeline { 
+  margin-bottom: 30px; 
+}
 
 .timeline .title-wrapper {
   display: flex;
   align-items: center;
   gap: 15px;
   margin-bottom: 25px;
+  font-size: var(--fs-6);
 }
 
 .timeline-list {
@@ -824,7 +893,7 @@ main {
 }
 
 .timeline-text {
-  color: var(--light-gray);
+  color: var(--eerie-black-1);
   font-weight: var(--fw-300);
   line-height: 1.6;
 }
@@ -868,9 +937,6 @@ main {
 }
 
 
-
-
-
 /*-----------------------------------*\
   #PORTFOLIO
 \*-----------------------------------*/
@@ -884,7 +950,7 @@ main {
 
 .filter-select {
   background: var(--eerie-black-2);
-  color: var(--light-gray);
+  color: var(--eerie-black-1);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -921,7 +987,7 @@ main {
 
 .select-item button {
   background: var(--eerie-black-2);
-  color: var(--light-gray);
+  color: var(--eerie-black-1);
   font-size: var(--fs-6);
   font-weight: var(--fw-300);
   text-transform: capitalize;
@@ -1013,7 +1079,7 @@ main {
 .project-category { margin-left: 10px; }
 
 .project-title {
-  color: var(--white-2);
+  color: var(--jet);
   font-size: var(--fs-5);
   font-weight: var(--fw-400);
   text-transform: capitalize;
@@ -1021,13 +1087,10 @@ main {
 }
 
 .project-category {
-  color: var(--light-gray-70);
+  color: var(--dark-gray);
   font-size: var(--fs-6);
   font-weight: var(--fw-300);
 }
-
-
-
 
 
 /*-----------------------------------*\
@@ -1087,7 +1150,7 @@ main {
 }
 
 .blog-meta :is(.blog-category, time) {
-  color: var(--light-gray-70);
+  color: var(--smoky-black);
   font-size: var(--fs-6);
   font-weight: var(--fw-300);
 }
@@ -1108,7 +1171,7 @@ main {
 .blog-post-item > a:hover .blog-item-title { color: var(--orange-yellow-crayola); }
 
 .blog-text {
-  color: var(--light-gray);
+  color: var(--eerie-black-1);
   font-size: var(--fs-6);
   font-weight: var(--fw-300);
   line-height: 1.6;
@@ -1318,8 +1381,8 @@ textarea.form-input::-webkit-resizer { display: none; }
    */
 
   main {
-    margin-top: 60px;
-    margin-bottom: 100px;
+    margin-top: 0;
+    margin-bottom: 50px;
   }
 
 
@@ -1329,21 +1392,24 @@ textarea.form-input::-webkit-resizer { display: none; }
    */
 
   .sidebar {
-    max-height: 180px;
+    position: static;
+    max-height: 100vh;
+    margin-top: 5%;
     margin-bottom: 30px;
+    margin-left: 2%;
   }
 
-  .sidebar.active { max-height: 584px; }
+  .sidebar.active { max-height: 100vh; }
 
   .sidebar-info { gap: 25px; }
 
-  .avatar-box { border-radius: 30px; }
+  .avatar-box { border-radius: 0px; }
 
-  .avatar-box img { width: 120px; }
+  .avatar-box img { width: 120px; margin-top: 5%;}
 
-  .info-content .name { margin-bottom: 15px; }
+  .info-content .name { margin-bottom: 15px; margin-right: 15%}
 
-  .info-content .title { padding: 5px 18px; }
+  .info-content .title { padding: 5px 18px; margin-left: 6%}
 
   .info_more-btn {
     top: -30px;
@@ -1387,7 +1453,9 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .about .article-title { margin-bottom: 20px; }
 
-  .about-text { margin-bottom: 40px; }
+  .about-text { 
+    color: var(--jet);
+    margin-bottom: 40px; }
 
   /* service */
 
@@ -1570,6 +1638,17 @@ textarea.form-input::-webkit-resizer { display: none; }
     gap: 30px 15px;
   }
 
+  .main-content {
+    position: relative;
+    width: max-content;
+    margin: 0 auto;
+    margin-top: 80px; /* Push content below the fixed navbar */
+    background-color: var(--white-1); /* Same background as navbar */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    border-radius: 8px; /* Optional rounded corners */
+    padding: 20px; /* Padding inside the box */
+    padding-top: 80px;
+  }
 
 
   /**
@@ -1594,38 +1673,39 @@ textarea.form-input::-webkit-resizer { display: none; }
   .modal-avatar-box img { width: 80px; }
 
 
-
   /**
-   * PORTFOLIO
-   */
+     * PORTFOLIO
+     */
 
-  .article-title { padding-bottom: 20px; }
+     .article-title { padding-bottom: 20px; }
 
-  .filter-select-box { display: none; }
-
-  .filter-list {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 25px;
-    padding-left: 5px;
-    margin-bottom: 30px;
-  }
-
-  .filter-item button {
-    color: var(--light-gray);
-    font-size: var(--fs-5);
-    transition: var(--transition-1);
-  }
-
-  .filter-item button:hover { color: var(--light-gray-70); }
-
-  .filter-item button.active { color: var(--orange-yellow-crayola); }
-
-  /* portfolio and blog grid */
-
-  .project-list, .blog-posts-list { grid-template-columns: 1fr 1fr; }
-
+     .filter-select-box { display: none; }
+ 
+     .filter-list {
+       display: flex;
+       justify-content: flex-start;
+       align-items: center;
+       gap: 25px;
+       padding-left: 5px;
+       margin-bottom: 30px;
+     }
+ 
+     .filter-item button {
+       color: var(--light-gray-70);
+       font-size: var(--fs-5);
+       transition: var(--transition-1);
+     }
+ 
+     .filter-item button:hover { color: var(--light-gray); }
+ 
+     .filter-item button.active { color: var(--orange-yellow-crayola); }
+ 
+     /* portfolio and blog grid */
+ 
+     .project-list, .blog-posts-list { grid-template-columns: 1fr 1fr; }
+ 
+ 
+   
 
 
   /**
@@ -1678,36 +1758,18 @@ textarea.form-input::-webkit-resizer { display: none; }
     box-shadow: var(--shadow-5);
   }
 
-
-
-  /**
-   * MAIN 
-   */
-
-  main { margin-bottom: 60px; }
-
-  .main-content {
-    position: relative;
-    width: max-content;
-    margin: auto;
-  }
-
-
-
   /**
    * NAVBAR
    */
 
-  .navbar {
-    position: absolute;
-    bottom: auto;
-    top: 0;
-    left: auto;
-    right: 0;
-    width: max-content;
-    border-radius: 0 20px;
-    padding: 0 20px;
-    box-shadow: none;
+   .navbar {
+    position: sticky;
+    top: 0; /* The navbar will stick when it reaches the top of the viewport */
+    width: 100%;
+    z-index: 10;
+    background-color: var(--white-2); /* Ensure the navbar matches the main section */
+    border-radius: 0; /* No rounded corners if the navbar spans the full width */
+    padding: 15px 0px;
   }
 
   .navbar-list {
@@ -1715,9 +1777,30 @@ textarea.form-input::-webkit-resizer { display: none; }
     padding: 0 20px;
   }
 
-  .navbar-link { font-weight: var(--fw-500); }
+  .navbar-link { 
+    font-size: var(--fs-8);
+    font-weight: var(--fw-300); }
 
 
+
+  /**
+   * MAIN 
+   */
+
+  main { 
+    margin-bottom: 60px; }
+
+  .main-content {
+    position: relative;
+    width: max-content;
+    margin: 0 auto;
+    margin-top: 80px; /* Push content below the fixed navbar */
+    background-color: var(--white-1); /* Same background as navbar */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    border-radius: 8px; /* Optional rounded corners */
+    padding: 20px; /* Padding inside the box */
+    padding-top: 80px;
+  }
 
   /**
    * ABOUT
@@ -1772,10 +1855,10 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   body::-webkit-scrollbar { width: 20px; }
 
-  body::-webkit-scrollbar-track { background: var(--smoky-black); }
+  body::-webkit-scrollbar-track { background: var(--jet); }
 
   body::-webkit-scrollbar-thumb {
-    border: 5px solid var(--smoky-black);
+    border: 5px solid var(--jet);
     background: hsla(0, 0%, 100%, 0.1);
     border-radius: 20px;
     box-shadow: inset 1px 1px 0 hsla(0, 0%, 100%, 0.11),
@@ -1814,7 +1897,12 @@ textarea.form-input::-webkit-resizer { display: none; }
   .main-content {
     min-width: 75%;
     width: 75%;
-    margin: 0;
+    margin: 100px;
+    margin-left: 280px; /* Create space for the sidebar */
+    background-color: var(--white-1); /* Same background as navbar */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    border-radius: 8px; /* Optional rounded corners */
+    padding: 20px;
   }
 
 
@@ -1823,53 +1911,60 @@ textarea.form-input::-webkit-resizer { display: none; }
    * SIDEBAR
    */
 
-  .sidebar {
-    position: sticky;
-    top: 60px;
-    max-height: max-content;
-    height: 100%;
-    margin-bottom: 0;
-    padding-top: 60px;
-    z-index: 1;
+   .sidebar {
+    position: fixed; /* Fix the sidebar to the left */
+    top: 130px; /* Adjust to sit below any fixed navbar */
+    left: 20px; /* Align to the left of the viewport */
+    width: 18%; /* Set the width of the sidebar */
+    max-width: 300px;
+    min-width: 200px;
+    max-height: 50vh; /* Ensure it fits within the viewport height */
+    overflow-y: auto; /* Add scrolling for overflowing content */
+    padding: 20px; /* Add padding inside the sidebar */
+    z-index: 1000; /* Ensure it stays above main content */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow */
   }
-
-  .sidebar-info { flex-direction: column; }
-
-  .avatar-box img { width: 150px; }
-
+  
+  .sidebar-info {
+    display: flex;
+    flex-direction: column; /* Stack sidebar items vertically */
+    align-items: center; /* Center align content */
+  }
+  
+  .avatar-box img {
+    width: 80%;
+    max-width: 150px;
+    border-radius: 0; /* Optional: Make the avatar circular */
+    margin-bottom: 20px;
+  }
+  
   .info-content .name {
-    white-space: nowrap;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .info-content .title {
+    font-size: 14px;
+    color: #666;
     text-align: center;
   }
-
-  .info-content .title { margin: auto; }
-
-  .info_more-btn { display: none; }
-
-  .sidebar-info_more {
-    opacity: 1;
-    visibility: visible;
+  
+  .contacts-list {
+    display: flex;
+    flex-direction: column; /* Stack contacts vertically */
+    gap: 10px; /* Add spacing between contacts */
+    margin-top: 20px;
   }
-
-  .contacts-list { grid-template-columns: 1fr; }
-
-  .contact-info :is(.contact-link) {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  
+  .social-list {
+    display: flex;
+    justify-content: center; /* Center-align social links */
+    gap: 15px;
+    margin-top: 20px;
   }
-
-  .contact-info :is(.contact-link, time, address) {
-    --fs-7: 14px;
-    font-weight: var(--fw-300);
-  }
-
-  .separator:last-of-type {
-    margin: 15px 0;
-    opacity: 0;
-  }
-
-  .social-list { justify-content: center; }
+  
 
 
 
